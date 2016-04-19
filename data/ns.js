@@ -1,6 +1,6 @@
 var functions = {
 	getFaults: function() {
-		return { data: "lol"};
+		return { success: false, data: "temp"};
 	}
 };
 
