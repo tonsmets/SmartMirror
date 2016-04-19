@@ -5,7 +5,7 @@ var ns = require('../data/ns');
 var nu = require('../data/nu');
 
 router.get('/', function(req, res) {
-	res.send("Hi!");
+	res.send("Hi, you reached the data endpoint!");
 	res.end();
 });
 
