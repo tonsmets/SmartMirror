@@ -14,9 +14,11 @@
   "author": "Ton Smets",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^0.20.0",
     "express": "^4.13.4",
     "feed-read": "0.0.1",
     "jade": "^1.11.0",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "request": "^2.72.0"
   }
 }

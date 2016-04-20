@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>SmartMirror</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/weather-icons.min.css" />
+        <script src="scripts/jquery-2.2.3.min.js"></script>
+        <script src="scripts/data.js"></script>
+    </head>
+    <body>
+    	<div class="top right">Rechtsboven</div>
+		<div class="top left">
+			<div class="date_time">
+				<div class="date_only dim"></div>
+				<div class="time_only"></div>
+			</div>
+			<div class="travel_data"></div>
+		</div>
+		<div class="center-ver center-hor">Melding</div>
+		<div class="lower-third center-hor"><div class="compliment light">Complimentje</div></div>
+		<div class="bottom center-hor">Nieuwsfeed</div>
+    	<script>
+    	getTrainData(); setInterval(getTrainData, 1000 * 60 * 10);
+    	getDateTime(); setInterval(getDateTime, 1000);
+    	</script>
+    </body>
+</html>
