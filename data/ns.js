@@ -32,8 +32,8 @@ var functions = {
 				});
 				var html = '<table>';
 				for(var i = 0; i < data.length; i++) {
-					html += '<tr '+ ( data[i].important ? 'class="important"' : '') +'><td '+ ( data[i].planned ? 'class="delay_planned"' : '')
-					+ '>'+ wordWrap(data[i].title, 30) + ( data[i].important ? '<br /><span class="important_meta">'+data[i].description+'</span>' : '' ) +'</td></tr>';
+					html += '<tr '+ ( data[i].important ? 'class="important"' : '') +'><td '+ ( data[i].planned ? 'class="delay_planned"></i>' : '>')
+					+ wordWrap(data[i].title, 20) + ( data[i].important ? '<br /><span class="important_meta">'+data[i].description+'</span>' : '' ) +'</td></tr>';
 				}
 				html += '</table>'
 				callback(html);
@@ -47,33 +47,25 @@ var functions = {
 };
 
 function wordWrap(str, maxWidth) {
-    var newLineStr = "\n"; done = false; res = '';
+    var newLineStr = "rrrrr"; done = false; res = '';
     do {                    
         found = false;
         // Inserts new line at first whitespace of the line
         for (i = maxWidth - 1; i >= 0; i--) {
             if (testWhite(str.charAt(i))) {
-                res = res + [str.slice(0, i), newLineStr].join('');
-                str = str.slice(i + 1);
+                res = res + str.slice(0, i);
                 found = true;
+                done = true;
                 break;
             }
         }
-        // Inserts new line at maxWidth position, the word is too long to wrap
-        if (!found) {
-            res += [str.slice(0, maxWidth), newLineStr].join('');
-            str = str.slice(maxWidth);
-        }
-
-        if (str.length < maxWidth)
-            done = true;
     } while (!done);
 
     return res;
 }
 
 function testWhite(x) {
-    var white = new RegExp(/^\s$/);
+    var white = new RegExp(/^(\s|\-)$/);
     return white.test(x.charAt(0));
 };
 

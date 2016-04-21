@@ -13,7 +13,9 @@
         <script src="scripts/data.js"></script>
     </head>
     <body>
-    	<div class="top right">Rechtsboven</div>
+    	<div class="top right">
+    		<div class="current_weather"></div>
+    	</div>
 		<div class="top left">
 			<div class="date_time">
 				<div class="date_only dim"></div>
@@ -28,6 +30,7 @@
     	getTrainData(); setInterval(getTrainData, 1000 * 60 * 10);
     	getDateTime(); setInterval(getDateTime, 1000);
     	getNewsData(); setInterval(getNewsData, 1000 * 15);
+    	getWeather(); setInterval(getWeather, 1000 * 60 * 12);
     	</script>
     </body>
 </html>

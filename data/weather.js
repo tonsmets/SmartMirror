@@ -3,15 +3,37 @@ var request = require('request');
 // Sittard: 2747203
 // Eindhoven: 2756253
 
-var OpenWeatherMapKey = "xxxxx";
+var OpenWeatherMapKey = "782d133194f8a2d7cdcf8d0f2a4d6452";
+
+var iconMapping = {
+	'01d':'wi-day-sunny',
+	'02d':'wi-day-cloudy',
+	'03d':'wi-cloud',
+	'04d':'wi-cloudy',
+	'09d':'wi-day-showers',
+	'10d':'wi-day-rain',
+	'11d':'wi-day-thunderstorm',
+	'13d':'wi-day-snow',
+	'50d':'wi-day-fog',
+	'01n':'wi-night-clear',
+	'02n':'wi-night-alt-partly-cloudy',
+	'03n':'wi-night-alt-cloudy',
+	'04n':'wi-cloudy',
+	'09n':'wi-night-alt-showers',
+	'10n':'wi-night-alt-rain',
+	'11n':'wi-night-alt-thunderstorm',
+	'13n':'wi-night-alt-snow',
+	'50n':'wi-night-fog'
+};
 
 var functions = {
 	getWeatherCurrent: function(id, callback) {
-		request("http://api.openweathermap.org/data/2.5/weather?id="+id+"&units=metric&appid=" + OpenWeatherMapKey, function(error, response, html){
-			var data = false;
+		request("http://api.openweathermap.org/data/2.5/weather?id="+id+"&units=metric&appid=" + OpenWeatherMapKey, function(error, response, json){
 	        if(!error){
-	        	var response = {"statusCode":200,"body":"{\"coord\":{\"lon\":5.87,\"lat\":51},\"weather\":[{\"id\":800,\"main\":\"Clear\",\"description\":\"clear sky\",\"icon\":\"01d\"}],\"base\":\"cmc stations\",\"main\":{\"temp\":14,\"pressure\":1028,\"humidity\":41,\"temp_min\":14,\"temp_max\":14},\"wind\":{\"speed\":5.1,\"deg\":60},\"clouds\":{\"all\":0},\"dt\":1461171000,\"sys\":{\"type\":1,\"id\":4973,\"message\":0.0037,\"country\":\"NL\",\"sunrise\":1461126559,\"sunset\":1461177729},\"id\":2747203,\"name\":\"Sittard\",\"cod\":200}\n","headers":{"server":"nginx","date":"Wed, 20 Apr 2016 17:33:02 GMT","content-type":"application/json; charset=utf-8","transfer-encoding":"chunked","connection":"close","x-source":"redis","access-control-allow-origin":"*","access-control-allow-credentials":"true","access-control-allow-methods":"GET, POST"},"request":{"uri":{"protocol":"http:","slashes":true,"auth":null,"host":"api.openweathermap.org","port":80,"hostname":"api.openweathermap.org","hash":null,"search":"?id=2747203&units=metric&appid=782d133194f8a2d7cdcf8d0f2a4d6452","query":"id=2747203&units=metric&appid=782d133194f8a2d7cdcf8d0f2a4d6452","pathname":"/data/2.5/weather","path":"/data/2.5/weather?id=2747203&units=metric&appid=782d133194f8a2d7cdcf8d0f2a4d6452","href":"http://api.openweathermap.org/data/2.5/weather?id=2747203&units=metric&appid=782d133194f8a2d7cdcf8d0f2a4d6452"},"method":"GET","headers":{}}};
-				callback(response.body);
+	        	var data = JSON.parse(json);
+				var resHtml = '<div class="small_info"></div> \
+				<div class="large_info"><i class="wi '+ iconMapping[data.weather[0].icon] +'"></i> '+ parseInt(data.main.temp) +'&deg;</div>';
+				callback(resHtml);
 	        }
 	        else {
 	        	callback(data);

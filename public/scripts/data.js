@@ -50,6 +50,23 @@ var getNewsData = function() {
 	});
 };
 
+var getWeather = function() {
+	$.ajax({
+		type: 'GET',
+		url: "http://localhost:3000/data/weather",
+		dataType: 'html',
+		success: function (data) {
+			console.log(data);
+			$('div.current_weather').fadeOut(1000, function() {
+			  $(this).html(data);
+			}).fadeIn(1000);
+		}.bind(this),
+		error: function () {
+			console.log("Error");
+		}
+	});
+};
+
 function pad(number, zeros) {
   if (number<=9999) { number = ("0000000000000000"+number).slice(-1*zeros); }
   return number;
