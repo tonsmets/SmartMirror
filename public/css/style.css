@@ -32,9 +32,13 @@ body {
   margin-top: 150px;
 }
 
-.delay_planned {
+.delay_planned, .traffic_data_item {
   font-size: 40px !important;
   font-style: italic;
+}
+
+.traffic_data {
+	margin-top: 150px;
 }
 
 .important {

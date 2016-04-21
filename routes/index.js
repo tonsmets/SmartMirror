@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var ns = require('../data/ns');
+var traffic = require('../data/traffic');
 var nu = require('../data/nu');
 var weather = require('../data/weather');
 
@@ -13,6 +14,14 @@ router.get('/', function(req, res) {
 /* NS.nl (Dutch Railways) data */
 router.get('/ns', function(req, res) {
 	ns.getDisrupts(function(data) {
+		res.send(data);
+		res.end();
+	});
+});
+
+/* vid.nl (Dutch traffic site) data */
+router.get('/traffic', function(req, res) {
+	traffic.getDisrupts(function(data) {
 		res.send(data);
 		res.end();
 	});

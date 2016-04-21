@@ -14,6 +14,22 @@ var getTrainData = function() {
 	});
 };
 
+var GetTrafficData = function() {
+	$.ajax({
+		type: 'GET',
+		url: "http://localhost:3000/data/traffic",
+		dataType: 'html',
+		success: function (data) {
+			$('div.traffic_data').fadeOut(1000, function() {
+				$(this).html(data).fadeIn(1000);
+			});
+		}.bind(this),
+		error: function () {
+			console.log("Error");
+		}
+	});
+};
+
 var getDateTime = function() {
 	var tempDate = $('div.date_only').text();
 	var tempTime = $('div.time_only').text();
