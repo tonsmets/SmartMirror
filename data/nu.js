@@ -1,5 +1,7 @@
 var feed = require("feed-read");
 
+var newsCounter = 0;
+
 var getArticles = function(callback) {
 	feed("http://www.nu.nl/rss/Algemeen", function(err, articles) {
 		if (err) return false;
@@ -19,19 +21,21 @@ var functions = {
 	getHighlights: function(amount, callback) {
 		var articles = getArticles( function(articles) {
 			if(!articles) {
-				callback({ success: false, data: "Failed to fetch nu.nl articles"});
+				callback("<span>Nieuws ophalen mislukt</span>");
 				// Handle error
 			}
 			else {
 				articles.sort(function(a,b){
 					return new Date(b.published) - new Date(a.published);
 				});
-				if(articles.length <= amount) {
-					callback({ success: true, data: articles});
+				if(!(articles.length <= amount)) {
+					articles = articles.slice(0, amount);
 				}
-				else {
-					callback({ success: true, data: articles.slice(0, amount)});
+				if(newsCounter > articles.length -1) {
+					newsCounter = 0;
 				}
+				callback("<span>"+articles[newsCounter].title+"</span>");
+				newsCounter++;
 			}
 		});
 	}

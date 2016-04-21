@@ -32,7 +32,8 @@ var functions = {
 				});
 				var html = '<table>';
 				for(var i = 0; i < data.length; i++) {
-					html += '<tr '+ ( data[i].important ? 'class="important"' : '') +'><td '+ ( data[i].planned ? 'class="delay_planned"' : '') + '>'+ wordWrap(data[i].title, 30) +'</td></tr>';
+					html += '<tr '+ ( data[i].important ? 'class="important"' : '') +'><td '+ ( data[i].planned ? 'class="delay_planned"' : '')
+					+ '>'+ wordWrap(data[i].title, 30) + ( data[i].important ? '<br /><span class="important_meta">'+data[i].description+'</span>' : '' ) +'</td></tr>';
 				}
 				html += '</table>'
 				callback(html);
